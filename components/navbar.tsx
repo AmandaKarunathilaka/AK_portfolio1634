@@ -3,18 +3,20 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function Navbar() {
-
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const links = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: t("nav.home"), href: "#home" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.experience"), href: "#experience" },
+    { name: t("nav.skills"), href: "#skills" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.contact"), href: "#contact" },
   ];
 
   return (
@@ -31,18 +33,18 @@ export default function Navbar() {
 
         {/* Logo */}
         <a
-          href=""
+          href="#home"
           className="text-xl font-bold text-[#F6FAFD] tracking-wide"
         >
           Amanda
         </a>
 
-        {/* Desktop Menu */}
+        {/* Desktop Menu & Language Toggle */}
         <div className="hidden md:flex items-center gap-8 text-[#B3CFE5] relative font-medium">
 
           {links.map((link) => (
             <motion.a
-              key={link.name}
+              key={link.href}
               href={link.href}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -60,15 +62,21 @@ export default function Navbar() {
             </motion.a>
           ))}
 
+          {/* Language Toggle */}
+          <LanguageToggle />
+
         </div>
 
-        {/* Mobile Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="text-[#F6FAFD] md:hidden"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile controls: Language toggle + Menu Button */}
+        <div className="flex items-center gap-4 md:hidden">
+          <LanguageToggle />
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-[#F6FAFD]"
+          >
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
 
       </div>
 
@@ -84,7 +92,7 @@ export default function Navbar() {
 
             {links.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-[#F6FAFD] transition"

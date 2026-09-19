@@ -2,27 +2,30 @@
 
 import { motion } from "framer-motion";
 import { GraduationCap, Code, Rocket, Users } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+
   const highlights = [
     {
-      title: "Education",
-      desc: "BSc (Hons) Computing student at LNBTI",
+      title: t("about.educationTitle"),
+      desc: t("about.educationDesc"),
       icon: <GraduationCap className="w-6 h-6 text-[#B3CFE5]" />,
     },
     {
-      title: "Development Focus",
-      desc: "Modern Web Apps & Scalable Systems",
+      title: t("about.devFocusTitle"),
+      desc: t("about.devFocusDesc"),
       icon: <Code className="w-6 h-6 text-[#B3CFE5]" />,
     },
     {
-      title: "AI & Innovation",
-      desc: "Exploring ML models & intelligent tools",
+      title: t("about.aiTitle"),
+      desc: t("about.aiDesc"),
       icon: <Rocket className="w-6 h-6 text-[#B3CFE5]" />,
     },
     {
-      title: "Leadership & Community",
-      desc: "Active IEEE & IT Club Executive Leader",
+      title: t("about.leadershipTitle"),
+      desc: t("about.leadershipDesc"),
       icon: <Users className="w-6 h-6 text-[#B3CFE5]" />,
     },
   ];
@@ -50,7 +53,8 @@ export default function About() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            About <span className="text-[#B3CFE5]">Me</span>
+            {t("about.titlePrefix")}{" "}
+            <span className="text-[#B3CFE5]">{t("about.titleSuffix")}</span>
           </h2>
 
           <div className="w-24 h-1 bg-[#4A7FA7] mx-auto mt-4 rounded-full"></div>
@@ -67,11 +71,11 @@ export default function About() {
             viewport={{ once: true }}
           >
             <p className="text-lg leading-relaxed text-[#B3CFE5]/90">
-              I am an aspiring Software Engineer and AI enthusiast currently pursuing my studies in Information and Communication Technology. I enjoy building modern web applications and solving real-world problems using technology.
+              {t("about.p1")}
             </p>
 
             <p className="mt-4 text-[#B3CFE5]/80">
-              My interests include full-stack development, artificial intelligence, and creating impactful digital solutions for education and business.
+              {t("about.p2")}
             </p>
 
             {/* Highlight Box */}
@@ -84,7 +88,7 @@ export default function About() {
               backdrop-blur-md
               text-[#F6FAFD]
             ">
-              🚀 Passionate about building scalable applications and exploring AI-driven innovations.
+              {t("about.highlight")}
             </div>
           </motion.div>
 

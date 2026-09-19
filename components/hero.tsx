@@ -3,9 +3,30 @@
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaUser } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaUser, FaDownload } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const { t, language } = useLanguage();
+
+  const roleSequence = language === "ja"
+    ? ["フルスタックエンジニア", 2000, "AI愛好家", 2000, "Next.jsデベロッパー", 2000]
+    : ["Full Stack Developer", 2000, "AI Enthusiast", 2000, "Next.js Developer", 2000];
+
+  const handleDownloadCV = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // Open in new tab
+    window.open("/resume.pdf", "_blank", "noopener,noreferrer");
+    
+    // Trigger download
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Amanda_Karunathilaka_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section
       id="home"
@@ -76,20 +97,18 @@ export default function Hero() {
 
           {/* Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-[#F6FAFD]">
-            Hi! <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B3CFE5] via-[#4A7FA7] to-[#B3CFE5]">I'm</span> Amanda Karunathilaka
+            {t("hero.greeting")}{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B3CFE5] via-[#4A7FA7] to-[#B3CFE5]">
+              {language === "en" ? "I'm" : ""}
+            </span>{" "}
+            {t("hero.name")}
           </h1>
 
           {/* Role & Description */}
           <div className="text-lg md:text-xl font-medium text-[#B3CFE5] min-h-[28px]">
             <TypeAnimation
-              sequence={[
-                "Full Stack Developer",
-                2000,
-                "AI Enthusiast",
-                2000,
-                "Next.js Developer",
-                2000,
-              ]}
+              key={language}
+              sequence={roleSequence}
               speed={50}
               repeat={Infinity}
               cursor={false}
@@ -97,7 +116,7 @@ export default function Hero() {
           </div>
 
           <p className="text-[#B3CFE5]/90 text-base md:text-lg leading-relaxed max-w-2xl">
-            I design and develop modern, scalable web applications with a focus on clean user experiences and real-world problem solving. Passionate about full-stack development and AI-driven solutions.
+            {t("hero.bio")}
           </p>
 
           {/* Contact Details Card Grid */}
@@ -107,7 +126,7 @@ export default function Hero() {
                 <FaUser className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">Name</p>
+                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">{t("hero.labelName")}</p>
                 <p className="text-sm font-semibold text-[#F6FAFD]">Amanda Karunathilaka</p>
               </div>
             </div>
@@ -117,7 +136,7 @@ export default function Hero() {
                 <FaPhoneAlt className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">Phone</p>
+                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">{t("hero.labelPhone")}</p>
                 <p className="text-sm font-semibold text-[#F6FAFD]">+94710622707</p>
               </div>
             </div>
@@ -127,7 +146,7 @@ export default function Hero() {
                 <FaEnvelope className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">Email</p>
+                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">{t("hero.labelEmail")}</p>
                 <p className="text-xs min-[440px]:text-[13px] sm:text-[12px] md:text-[13px] xl:text-sm font-semibold text-[#F6FAFD] select-all">
                   amandakarunathilaka490@gmail.com
                 </p>
@@ -139,7 +158,7 @@ export default function Hero() {
                 <FaLinkedin className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">Linkedin</p>
+                <p className="text-xs text-[#B3CFE5]/70 uppercase tracking-wider">{t("hero.labelLinkedin")}</p>
                 <p className="text-sm font-semibold text-[#F6FAFD]">Amanda Karunathilaka</p>
               </div>
             </div>
@@ -158,20 +177,22 @@ export default function Hero() {
                 transition-all duration-300
               "
             >
-              Contact Me
+              {t("hero.contactBtn")}
             </a>
 
             <a
-              href="#home"
+              href="/resume.pdf"
+              onClick={handleDownloadCV}
               className="
-                px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base
+                inline-flex items-center space-x-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base
                 border border-[#B3CFE5]/40 text-[#B3CFE5]
                 hover:bg-[#1A3D63]/50 hover:text-[#F6FAFD] hover:border-[#B3CFE5]
                 hover:scale-105 active:scale-95
-                transition-all duration-300
+                transition-all duration-300 cursor-pointer
               "
             >
-              Download CV
+              <FaDownload className="w-4 h-4" />
+              <span>{t("hero.downloadCvBtn")}</span>
             </a>
           </div>
 
@@ -181,4 +202,3 @@ export default function Hero() {
     </section>
   );
 }
-

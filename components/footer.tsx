@@ -1,8 +1,11 @@
 "use client";
 
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -17,33 +20,33 @@ export default function Footer() {
             Amanda <span className="text-[#4A7FA7]">Karunathilaka</span>
           </a>
           <p className="text-[#B3CFE5]/80 text-sm leading-relaxed max-w-sm">
-            Full Stack Developer & AI enthusiast passionate about building modern web applications and delivering exceptional digital experiences.
+            {t("footer.bio")}
           </p>
         </div>
 
         {/* Quick Links Column */}
         <div className="md:col-span-3 space-y-3">
           <h4 className="text-base font-semibold text-[#F6FAFD] uppercase tracking-wider">
-            Navigation
+            {t("footer.navTitle")}
           </h4>
           <ul className="space-y-2 text-sm text-[#B3CFE5]/80">
             <li>
-              <a href="#home" className="hover:text-[#F6FAFD] transition duration-200">Home</a>
+              <a href="#home" className="hover:text-[#F6FAFD] transition duration-200">{t("nav.home")}</a>
             </li>
             <li>
-              <a href="#about" className="hover:text-[#F6FAFD] transition duration-200">About</a>
+              <a href="#about" className="hover:text-[#F6FAFD] transition duration-200">{t("nav.about")}</a>
             </li>
             <li>
-              <a href="#experience" className="hover:text-[#F6FAFD] transition duration-200">Experience</a>
+              <a href="#experience" className="hover:text-[#F6FAFD] transition duration-200">{t("nav.experience")}</a>
             </li>
             <li>
-              <a href="#skills" className="hover:text-[#F6FAFD] transition duration-200">Skills</a>
+              <a href="#skills" className="hover:text-[#F6FAFD] transition duration-200">{t("nav.skills")}</a>
             </li>
             <li>
-              <a href="#projects" className="hover:text-[#F6FAFD] transition duration-200">Projects</a>
+              <a href="#projects" className="hover:text-[#F6FAFD] transition duration-200">{t("nav.projects")}</a>
             </li>
             <li>
-              <a href="#contact" className="hover:text-[#F6FAFD] transition duration-200">Contact</a>
+              <a href="#contact" className="hover:text-[#F6FAFD] transition duration-200">{t("nav.contact")}</a>
             </li>
           </ul>
         </div>
@@ -51,10 +54,10 @@ export default function Footer() {
         {/* Social & Connect Column */}
         <div className="md:col-span-4 space-y-4">
           <h4 className="text-base font-semibold text-[#F6FAFD] uppercase tracking-wider">
-            Connect
+            {t("footer.connectTitle")}
           </h4>
           <p className="text-sm text-[#B3CFE5]/80">
-            Feel free to reach out via social channels or email.
+            {t("footer.connectDesc")}
           </p>
           <div className="flex items-center gap-4 text-xl text-[#B3CFE5]">
             <a
@@ -76,7 +79,7 @@ export default function Footer() {
               <FaLinkedin />
             </a>
             <a
-              href="mailto:[EMAIL_ADDRESS]"
+              href="mailto:amandakarunathilaka490@gmail.com"
               className="p-3 rounded-full bg-[#1A3D63]/80 border border-[#4A7FA7]/30 hover:bg-[#4A7FA7] hover:text-[#F6FAFD] transition duration-300"
               aria-label="Email"
             >
@@ -89,13 +92,13 @@ export default function Footer() {
 
       {/* Bottom Copyright & Back to Top */}
       <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#B3CFE5]/60">
-        <p>© {new Date().getFullYear()} Amanda Karunathilaka. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Amanda Karunathilaka. {t("footer.rights")}</p>
 
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A3D63]/60 border border-[#4A7FA7]/30 text-[#B3CFE5] hover:text-[#F6FAFD] hover:bg-[#4A7FA7]/40 transition duration-300"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A3D63]/60 border border-[#4A7FA7]/30 text-[#B3CFE5] hover:text-[#F6FAFD] hover:bg-[#4A7FA7]/40 transition duration-300 cursor-pointer"
         >
-          <span>Back to Top</span>
+          <span>{t("footer.backToTop")}</span>
           <FaArrowUp className="w-3 h-3" />
         </button>
       </div>

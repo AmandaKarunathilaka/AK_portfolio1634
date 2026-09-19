@@ -28,11 +28,14 @@ import {
   SiSupabase,
 } from "react-icons/si";
 import { Brain, Code2, Layout, Database, Wrench, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   const skillCategories = [
     {
-      title: "Languages & Core",
+      title: t("skillsSection.catLanguages"),
       icon: <Code2 className="w-6 h-6 text-[#B3CFE5]" />,
       skills: [
         { name: "Java", icon: <FaJava className="text-amber-500" /> },
@@ -44,7 +47,7 @@ export default function Skills() {
       ],
     },
     {
-      title: "Frontend & Web Tech",
+      title: t("skillsSection.catFrontend"),
       icon: <Layout className="w-6 h-6 text-[#B3CFE5]" />,
       skills: [
         { name: "React", icon: <FaReact className="text-cyan-400" /> },
@@ -54,7 +57,7 @@ export default function Skills() {
       ],
     },
     {
-      title: "Backend & AI",
+      title: t("skillsSection.catBackend"),
       icon: <Database className="w-6 h-6 text-[#B3CFE5]" />,
       skills: [
         { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
@@ -67,7 +70,7 @@ export default function Skills() {
       ],
     },
     {
-      title: "Tools & Ecosystem",
+      title: t("skillsSection.catTools"),
       icon: <Wrench className="w-6 h-6 text-[#B3CFE5]" />,
       skills: [
         { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
@@ -99,10 +102,11 @@ export default function Skills() {
           className="text-center mb-16 space-y-4"
         >
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
-            Technical <span className="text-[#B3CFE5]">Skills</span>
+            {t("skillsSection.titlePrefix")}{" "}
+            <span className="text-[#B3CFE5]">{t("skillsSection.titleSuffix")}</span>
           </h2>
           <p className="text-[#B3CFE5]/80 max-w-xl mx-auto text-base sm:text-lg">
-            Technologies, frameworks, and tools I leverage to build efficient, scalable, and intuitive software applications.
+            {t("skillsSection.subtitle")}
           </p>
           <div className="w-24 h-1 bg-[#4A7FA7] mx-auto rounded-full mt-4"></div>
         </motion.div>
