@@ -10,7 +10,7 @@ A responsive, high-performance personal portfolio website built with Next.js 16,
 - **Hero Section:** Interactive hero section with dynamic typing effect.
 - **About & Skills:** Highlights personal background, technical skills, and tools.
 - **Work Experience:** Structured timeline detailing work history and roles.
-- **Projects Showcase:** Interactive project showcase with dynamic detail pages (`/projects/[id]`).
+- **Projects Showcase:** Interactive project showcase with dynamic detail pages.
 - **Contact Form:** Interactive contact section with social links and input form.
 - **Smooth Animations:** UI transitions and micro-interactions powered by Framer Motion.
 
